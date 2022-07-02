@@ -28,7 +28,6 @@ class CreateSubjects(viewsets.ModelViewSet):
     
     def create(self, serializer):
         subjectname = self.request.POST['subject']
-        print(subjectname)
         if subjects.objects.filter(subject=subjectname).exists():
             res = ValidationError({'message':'subjects exists already'})
             res.status_code = 208
