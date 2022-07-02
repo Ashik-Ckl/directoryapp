@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="body d-flex py-lg-3 py-md-2">
+    <div class="container-xxl">
+        <!-- Row end  -->
+
+            <form class="row p-2 mt-3 shadow p-3 mb-5 bg-white rounded" id="teacherAddForm">
+                <div class="form-group  mt-3 col-lg-6" >
+                    <label for="exampleInputEmail1">First name:</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                   
+                </div>
+                
+                <div class="form-group  mt-3 col-lg-6">
+                    <label for="exampleInputEmail1">Last name:</label>
+                    <input type="text" name="last_name" class="form-control"placeholder="Last Name">
+                   
+                </div>
+
+                <div class="form-group  mt-3 col-lg-6">
+                    <label for="exampleInputEmail1">Profile Picture:</label>
+                    <input type="file" name="profile_picture" class="form-control">
+                   
+                </div>
+                <div class="form-group  mt-3 col-lg-6">
+                    <label for="exampleInputEmail1">Email:</label>
+                    <input type="email" name="email" class="form-control"placeholder="Email">
+                </div>
+
+                <div class="form-group  mt-3 col-lg-6">
+                    <label for="exampleInputEmail1">Phone Number:</label>
+                    <input type="tel" name="phone" class="form-control"placeholder="Phone Number">
+                </div>
+
+                <div class="form-group  mt-3 col-lg-6">
+                    <label for="exampleInputEmail1">Room Number:</label>
+                    <input type="text" name="room_number" class="form-control" placeholder="Room Number">
+                </div>
+
+                <div class="form-group  mt-3 col-lg-12">
+                    <label for="exampleInputEmail1">Address:</label>
+                    <textarea name="address" class="form-control" placeholder="Address"></textarea>
+                </div>
+
+                <div class="form-group  mt-3 form-check col-lg-12" >
+                    <label for="exampleFormControlFile1"><b>Subjects:</b></label>
+                    <div class="row" id="subjectsDiv">
+
+                    </div>
+                
+                </div>
+                <p class="text-danger"></p>
+                <div class="col-lg-12 text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+
+            <div class="row align-items-center">
+                <div class="border-0 mb-4">
+                    <div
+                        class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+                        <h3 class="fw-bold mb-0">Subjects</h3>
+                        <div class="col-auto d-flex w-sm-100">
+                            <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal"
+                                data-bs-target="#subjectModal"><i class="icofont-plus-circle me-2 fs-6"></i>Filter
+                                Subject</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row ">
+            <div class="col-sm-12">
+                <div class="card mb-3">
+                    <div class="card-body" style="overflow-x: scroll;">
+                        <table id="teacherViewTable" class="table table-hover align-middle mb-0 shadow p-3 mb-5 bg-white rounded" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Profile Picture</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Phone Number</th>
+                                    <th>Room Number</th>
+                                    <th>Subjects Taught</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row End -->
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="subjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title  fw-bold" id="expaddLabel">Subjects</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="deadline-form">
+                    <form id="subjectFilterForm">
+                        {% csrf_token %}
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-12">
+                                <label class="form-label">Subject Name*</label>
+                                <div class="row" id="filtersubjectsDiv">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="btnSubmit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'official/js/teacher.js' %}"></script>
+<script src="{% static 'official/js/helper.js' %}"></script>
+{% endblock %}
